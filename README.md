@@ -1,48 +1,54 @@
+
 # SafeSpace 🧠
 
 ## AI-Based Mental Health Screening System for South African Public Healthcare
 
-**SafeSpace** is an AI-based mental health screening prototype developed as a final-year BSc Data Science capstone project at **Sol Plaatje University**.
+SafeSpace is an **AI-based mental health screening and referral-support prototype** developed as a final-year **BSc Data Science capstone project** at **Sol Plaatje University**.
 
-The system demonstrates how data science, machine learning, natural language processing (NLP), PHQ-9 screening and an interactive **R Shiny** dashboard can be combined to support early mental-health risk identification and referral in South African public healthcare settings.
+The system combines **PHQ-9 screening, journal text analysis, natural language processing (NLP), machine learning investigation, and an interactive R Shiny dashboard** to demonstrate how data science can support early mental-health risk identification and referral in a South African public healthcare setting.
 
-> **Important:** SafeSpace is a screening and referral-support prototype. It is **not a diagnostic system** and does not replace doctors, psychologists, nurses, counsellors or other qualified healthcare professionals.
+> **Important:** SafeSpace is a screening and referral-support prototype. It is **not a diagnostic system** and does not replace doctors, psychologists, nurses, counsellors, or other qualified healthcare professionals.
 
 ---
 
 ## 📌 Project Overview
 
-Mental-health support in South Africa faces challenges including limited resources, long waiting periods, stigma and gaps between initial healthcare contact and access to appropriate mental-health services.
+Mental-health services can face challenges such as limited resources, long waiting times, stigma, and difficulties identifying people who may require additional support.
 
-SafeSpace focuses on the point where a patient may be referred for further mental-health support. The prototype demonstrates how structured screening information, patient health-history information and optional written journal information can be analysed to provide an understandable risk indication and appropriate support guidance.
+SafeSpace was developed as a prototype to demonstrate how a digital screening system could provide a structured first-level assessment before a person leaves a healthcare facility.
 
-The project combines three main information sources:
+The system combines:
 
-1. **PHQ-9 questionnaire responses**
-2. **Simulated patient health-record information**
-3. **Optional journal/free-text information**
+* Patient information
+* PHQ-9 depression screening
+* Mental-health journal analysis
+* NLP-related text processing
+* Keyword-based risk identification
+* Machine-learning investigation
+* Risk classification
+* Recommendations and support guidance
+* An interactive R Shiny dashboard
 
-The project report describes these three data sources and their role in the SafeSpace system.
+The system is designed to support **screening and referral**, rather than making a clinical diagnosis.
 
 ---
 
-## 🎯 Project Objectives
+# 🎯 Project Objectives
 
 The main objectives of SafeSpace are to:
 
-* Develop an interactive mental-health screening system using **R Shiny**.
-* Implement **PHQ-9 scoring** and depression-severity classification.
-* Analyse optional journal text using **NLP techniques**.
-* Investigate machine-learning approaches for mental-health risk classification.
-* Combine structured and unstructured information into a screening workflow.
-* Provide understandable results, recommendations and support resources.
-* Demonstrate how a digital screening tool could support referral decisions in a public healthcare environment.
+1. Develop an interactive mental-health screening system using **R Shiny**.
+2. Use the **PHQ-9 questionnaire** to calculate depression-severity scores.
+3. Analyse mental-health journal entries for possible risk indicators.
+4. Apply **data science and NLP techniques** to support mental-health screening.
+5. Provide understandable results, recommendations, and support resources.
+6. Develop a user-friendly dashboard that can support early awareness and referral.
 
 ---
 
-## 🧠 How SafeSpace Works
+# 🔄 How SafeSpace Works
 
-The SafeSpace workflow can be summarised as:
+The SafeSpace workflow follows a structured screening process:
 
 ```text
 Patient Information
@@ -51,156 +57,322 @@ PHQ-9 Assessment
         ↓
 PHQ-9 Score & Severity
         ↓
-Journal / Free-Text Analysis
+Mental Health Journal
         ↓
-Patient Health Information
+Journal / Risk Analysis
         ↓
-AI / Risk Analysis
+AI Analysis
         ↓
-Risk Classification
+Overall Screening Result
         ↓
 Recommendations & Support
 ```
 
-The system is designed to bring different types of information together instead of relying only on a questionnaire score.
+The application contains six main sections:
+
+### 1. Home
+
+The landing page and starting point of the application.
+
+### 2. Patient Information
+
+Captures basic simulated patient information required for the screening workflow.
+
+### 3. PHQ-9 Assessment
+
+The user completes the nine PHQ-9 questions.
+
+Each question is scored from **0 to 3**.
+
+### 4. Mental Health Journal
+
+The user can enter a journal entry that is analysed for possible risk-related indicators.
+
+### 5. AI Analysis
+
+The application analyses the available screening information and journal text.
+
+The current prototype uses **transparent keyword-based journal alerts**, while machine-learning methods were investigated during development.
+
+### 6. Results
+
+Displays:
+
+* PHQ-9 score
+* Depression-severity category
+* Journal-risk information
+* Recommendations
+* Referral/support guidance
 
 ---
 
-## 📊 PHQ-9 Screening
+# 🧮 PHQ-9 Screening
 
-SafeSpace uses the **Patient Health Questionnaire-9 (PHQ-9)** as its structured screening component.
+SafeSpace implements PHQ-9 scoring using the nine questionnaire responses.
 
-Each of the nine questions is scored from **0 to 3**, producing a total score from **0 to 27**.
+Each question receives a score between **0 and 3**.
 
-The project uses the following severity ranges:
+The nine responses are added together to produce a total score between **0 and 27**.
 
-| PHQ-9 Score | Depression Severity |
-| ----------: | ------------------- |
-|         0–4 | Minimal             |
-|         5–9 | Mild                |
-|       10–14 | Moderate            |
-|       15–19 | Moderately Severe   |
-|       20–27 | Severe              |
+### PHQ-9 Severity Categories
 
-For the SafeSpace prototype, these severity levels are additionally grouped into broader risk categories:
+| Score | Severity          |
+| ----: | ----------------- |
+|   0–4 | Minimal           |
+|   5–9 | Mild              |
+| 10–14 | Moderate          |
+| 15–19 | Moderately Severe |
+| 20–27 | Severe            |
 
-| PHQ-9 Score | SafeSpace Risk Category |
-| ----------: | ----------------------- |
-|         0–9 | Low Risk                |
-|       10–19 | Medium Risk             |
-|       20–27 | High Risk               |
+The system then uses the calculated score to display the corresponding severity category.
 
-These classifications are described in the project report.
+### Dataset Distribution
+
+The PHQ-9-related dataset used during the project contained the following severity distribution:
+
+| Severity          | Number of Records |
+| ----------------- | ----------------: |
+| Minimal           |               885 |
+| Mild              |             2,204 |
+| Moderate          |             3,405 |
+| Moderately Severe |             4,062 |
+| Severe            |             5,057 |
 
 ---
 
-## 🤖 Machine Learning & NLP
+# 🤖 Machine Learning and NLP
 
-### Random Forest
+SafeSpace investigated several data-science and machine-learning techniques.
 
-Random Forest is used for structured classification involving:
+## Random Forest
 
-* Individual PHQ-9 responses
-* Simulated patient health information
-* Previous mental-health information
-* Other structured patient features
+Random Forest was investigated as a classification approach for structured patient-related features.
 
-The model uses multiple decision trees and combines their predictions to produce a classification. The project report describes a training/testing split in which **80% of the data was used for training and 20% for testing**, with evaluation including accuracy, precision, recall, F1-score and Cohen's Kappa.
+It combines multiple decision trees to produce a classification result.
 
-### Naive Bayes + TF-IDF
+## Naive Bayes
 
-For the journal/free-text component, SafeSpace investigates:
+Naive Bayes was investigated for text classification.
+
+The approach can use patterns in words and their occurrence to estimate the most likely classification category.
+
+## TF-IDF
+
+TF-IDF was investigated as a method for representing text according to the importance of words within documents.
+
+## NLP Processing
+
+The project investigated NLP-related processes including:
 
 * Text cleaning
-* Lowercasing
-* Punctuation removal
-* Stop-word removal
-* Stemming
-* TF-IDF feature representation
-* Naive Bayes text classification
+* Tokenisation
+* Text preparation
+* TF-IDF investigation
+* Keyword-based risk identification
 
-The text classifier is designed to identify whether written content contains patterns associated with the project's risk categories.
+## Keyword-Based Journal Analysis
 
-### Hybrid Risk Analysis
+The current SafeSpace prototype uses **transparent keyword-based journal alerts**.
 
-SafeSpace combines information from the structured analysis and text analysis.
+This approach was selected because it makes the reason for an alert easier to understand during a prototype demonstration.
 
-The project design uses the higher concern when the two components differ, so that a higher-risk indication is not overlooked simply because another component produces a lower classification.
+The system checks journal text for predefined risk-related indicators and uses those indicators to support the screening workflow.
 
 ---
 
-## 🔄 Methodology — CRISP-DM
+# 📊 Why Did the Prototype Achieve 100% Accuracy?
 
-The project follows the **Cross-Industry Standard Process for Data Mining (CRISP-DM)** methodology.
+The project originally set a target of achieving **at least 80% accuracy**.
 
-The main phases are:
+During evaluation, the SafeSpace prototype achieved:
 
-1. **Business Understanding** – identify the mental-health referral problem.
-2. **Data Understanding** – investigate the available datasets.
-3. **Data Preparation** – clean and prepare structured and text data.
-4. **Modelling** – investigate Random Forest and Naive Bayes approaches.
-5. **Evaluation** – evaluate model performance using classification metrics.
-6. **Deployment** – integrate the workflow into an R Shiny prototype.
+* **Accuracy: 100%**
+* **Precision: 100%**
+* **Recall: 100%**
+* **F1-score: 100%**
 
-CRISP-DM was selected to provide a structured process from the original healthcare problem through to the working prototype.
+The important point is that this result reflects the **evaluation setup used for the prototype**.
 
----
+There are several reasons why the prototype could produce a perfect result on its evaluation data:
 
-## 📁 Datasets
+### 1. The PHQ-9 calculation is deterministic
 
-SafeSpace uses several types of data.
+The PHQ-9 component does not make a random prediction.
 
-### 1. PHQ-9 Dataset
+The system adds the nine questionnaire scores and maps the total to a predefined severity category.
 
-Structured PHQ-9 questionnaire data is used for depression-severity and risk classification.
+Therefore, when the calculation and category boundaries are implemented correctly, the expected category can be reproduced consistently.
 
-### 2. Patient Health Records
+### 2. The journal analysis uses transparent rules
 
-The project uses **simulated patient health-record information** rather than real patient records.
+The current prototype uses predefined keyword-based risk identification for journal entries.
 
-The simulated information includes features such as:
+This means that the system follows explicit rules when identifying risk-related indicators rather than relying entirely on an uncertain prediction.
 
-* Previous mental-health history
-* Previous hospitalisation information
-* Chronic health conditions
-* Medication information
-* Other relevant patient-history indicators
+### 3. The evaluation data matched the implemented classification logic
 
-Real patient electronic health records were not used because obtaining and using such information would require appropriate privacy protection, ethical approval and healthcare-sector permissions.
+The reported 100% evaluation result was obtained on the data used to evaluate the prototype.
 
-### 3. Suicide and Depression NLP Dataset
+When the expected classifications correspond closely with the implemented scoring and classification logic, the resulting evaluation metrics can reach 100%.
 
-A large text dataset was used for the NLP component and contains labelled text used for text-classification investigation. The project report notes that the dataset is primarily English-language content, which is an important limitation when considering South African multilingual contexts.
+### 4. The result is prototype-level performance
 
-### ⚠️ Dataset Upload Note
+The 100% result should **not** be interpreted as meaning that SafeSpace will achieve 100% accuracy when used with real patients.
 
-The original **Suicide_Detection** dataset could **not be uploaded to this GitHub repository because the raw file is too large for GitHub's standard individual-file upload limit**.
+Real-world healthcare data is more complex and may contain:
 
-A cleaned version, **`suicide_clean`**, is included in the repository and was used as part of the project work.
+* Different writing styles
+* Missing information
+* Ambiguous language
+* Cultural and linguistic differences
+* False positives
+* False negatives
+* Data from populations that were not represented in the evaluation data
 
-Therefore, the absence of the original raw dataset from the repository is intentional and is due to its file size.
+Therefore, further testing with larger, independent, clinically validated datasets would be required before any real-world clinical deployment.
 
----
-
-## 🖥️ R Shiny Application
-
-The SafeSpace application was developed using **R and Shiny**.
-
-The repository contains the main Shiny application together with supporting project folders for data, models, scripts and screenshots.
-
-The application demonstrates the following workflow:
-
-* Patient information
-* PHQ-9 assessment
-* Mental-health journal
-* AI/risk analysis
-* Results and recommendations
-
-The project was designed to demonstrate how these components could work together in a public-health screening scenario.
+> **Interpretation:** SafeSpace exceeded its original target of 80% accuracy during the project's prototype evaluation, achieving 100% on the evaluation data. This demonstrates that the implemented prototype performed correctly on that evaluation setup, but it does not establish clinical effectiveness or real-world 100% accuracy.
 
 ---
 
-## 🗂️ Repository Structure
+# 📈 Model Evaluation
+
+The main evaluation metrics used in the project were:
+
+### Accuracy
+
+Measures the proportion of classifications that were correct.
+
+### Precision
+
+Measures how many of the classifications identified as a particular category were correct.
+
+### Recall
+
+Measures how effectively the system identified the relevant cases.
+
+### F1-Score
+
+Provides a combined measure based on precision and recall.
+
+### Prototype Evaluation Results
+
+| Metric    | Target | Achieved |
+| --------- | -----: | -------: |
+| Accuracy  |  ≥ 80% | **100%** |
+| Precision |      — | **100%** |
+| Recall    |      — | **100%** |
+| F1-Score  |      — | **100%** |
+
+The results demonstrate that the prototype exceeded its original accuracy target on the evaluation data.
+
+---
+
+# 🔬 Methodology — CRISP-DM
+
+The project followed the **CRISP-DM** methodology.
+
+## 1. Business Understanding
+
+The project identified the need for accessible first-level mental-health screening and referral support within the South African public healthcare context.
+
+## 2. Data Understanding
+
+The project explored:
+
+* PHQ-9-related depression data
+* Mental-health and suicide-risk text data
+* Patient-related information
+
+## 3. Data Preparation
+
+Data preparation included:
+
+* Cleaning data
+* Preparing structured variables
+* Preparing text data
+* Tokenisation
+* Text preparation
+* Class preparation
+* Feature preparation
+
+## 4. Modelling
+
+The project investigated:
+
+* PHQ-9 scoring
+* Naive Bayes
+* Random Forest
+* NLP-related techniques
+* Keyword-based risk identification
+
+## 5. Evaluation
+
+The system was evaluated using:
+
+* Accuracy
+* Precision
+* Recall
+* F1-score
+
+The prototype achieved 100% on the reported evaluation metrics.
+
+## 6. Deployment
+
+The final prototype was deployed as an interactive **R Shiny application** designed to demonstrate the SafeSpace screening workflow.
+
+---
+
+# 📂 Datasets
+
+The project used multiple types of data during development.
+
+### PHQ-9 / Depression Data
+
+Used to investigate depression severity and implement the PHQ-9 screening component.
+
+### Mental-Health Text Data
+
+Used for investigating text classification and journal-risk analysis.
+
+### Patient Health Records
+
+Patient information used within the project application is **simulated/synthetic**.
+
+> The patient information displayed in SafeSpace does not represent real patients.
+
+---
+
+# ⚠️ Dataset Upload Note
+
+The original **`Suicide_Detection`** dataset was **not uploaded to this GitHub repository because the raw dataset file is too large for GitHub's standard individual-file upload limit**.
+
+A cleaned version of the dataset, **`suicide_clean`**, is included in the repository where applicable.
+
+Therefore, the absence of the original raw `Suicide_Detection` dataset from the repository is intentional and is due to its file size.
+
+---
+
+# 🖥️ R Shiny Application
+
+SafeSpace was developed using **R Shiny** to create an interactive web-based dashboard.
+
+The application demonstrates how a healthcare screening workflow could be presented through an accessible interface.
+
+### Main Application Tabs
+
+| Tab                   | Purpose                                        |
+| --------------------- | ---------------------------------------------- |
+| Home                  | Application landing page                       |
+| Patient Info          | Captures simulated patient information         |
+| PHQ-9 Assessment      | Performs the PHQ-9 screening                   |
+| Mental Health Journal | Collects journal text                          |
+| AI Analysis           | Performs risk-related analysis                 |
+| Results               | Displays screening results and recommendations |
+
+---
+
+# 📁 Repository Structure
 
 ```text
 SafeSpace/
@@ -209,16 +381,16 @@ SafeSpace/
 ├── README.md
 │
 ├── data/
-│   ├── PHQ-9 dataset
-│   ├── Patient health records
+│   ├── Dataset_14-day_AA_depression_sympto...
+│   ├── Patient_Health_Records
 │   ├── phq_clean
 │   └── suicide_clean
 │
 ├── models/
-│   └── Model files
+│   └── model files
 │
 ├── scripts/
-│   └── Data preparation and modelling scripts
+│   └── data preparation and modelling scripts
 │
 └── screenshots/
     ├── 01_home-dashboard.png
@@ -232,119 +404,197 @@ SafeSpace/
 
 ---
 
-## 🧪 Model Evaluation
+# 📸 Application Screenshots
 
-The project evaluates classification performance using standard machine-learning metrics, including:
+The repository includes screenshots showing the main stages of the SafeSpace application.
 
-* **Accuracy** – proportion of predictions that were correct.
-* **Precision** – proportion of predicted positive/classified cases that were correct.
-* **Recall** – proportion of relevant cases identified by the model.
-* **F1-score** – combined measure of precision and recall.
-* **Cohen's Kappa** – agreement between predicted and reference classifications.
+### Home Dashboard
 
-The project report specifies an initial target of at least **80% predictive accuracy** and describes evaluation across the defined risk categories.
+The starting page of the SafeSpace application.
 
-The reported prototype evaluation produced very high performance results. These results should be interpreted within the context of the project's evaluation data and should **not** be interpreted as evidence of clinical accuracy on real patients.
+### Patient Information
 
----
+Shows the patient-information section using simulated information.
 
-## 📸 Screenshots
+### PHQ-9 Assessment
 
-The `screenshots` folder contains screenshots of the SafeSpace application, including the dashboard, patient information, PHQ-9 assessment, journal, medical history, AI analysis and results sections.
+Shows the nine-question PHQ-9 screening interface.
 
-These screenshots demonstrate the user interface and overall workflow of the prototype.
+### Mental Health Journal
 
----
+Shows the journal-entry section used for text analysis.
 
-## ⚠️ Limitations
+### Medical History
 
-SafeSpace is a student capstone prototype and has several important limitations.
+Shows additional patient-information fields used in the prototype workflow.
 
-### No real patient records
+### AI Analysis
 
-The project does not use real South African patient electronic health records. Patient health-record information used in the prototype is simulated.
+Shows the analysis of the available screening information.
 
-### English-language NLP data
+### Results
 
-The NLP dataset is primarily English-language content and may not represent how mental-health concerns are expressed across South Africa's indigenous languages and cultures.
-
-### No clinical diagnosis
-
-SafeSpace is a screening and referral-support prototype. It does not provide a formal clinical diagnosis or replace qualified healthcare professionals.
-
-### No clinical deployment
-
-The prototype has not been clinically validated or approved for use in functioning healthcare facilities. The project report identifies clinical validation, government approval, live deployment and EHR integration as outside the scope of the current capstone project.
-
-### No EHR integration
-
-The current project does not connect to South African healthcare information systems or live electronic health-record systems.
+Displays the screening score, severity and recommended next steps.
 
 ---
 
-## 🔮 Future Improvements
+# 💡 Actionable Insights
 
-Future development could include:
+The SafeSpace prototype demonstrates several ways data-driven screening could support early awareness:
 
-* Training and evaluating the system using appropriately approved South African patient data.
-* Developing multilingual NLP datasets covering South African languages.
-* Improving the NLP model using larger and more representative datasets.
-* Conducting independent external validation.
-* Performing formal clinical evaluation.
-* Working with healthcare professionals and relevant stakeholders.
-* Investigating secure integration with healthcare information systems.
-* Developing appropriate privacy, ethical and governance procedures.
-* Evaluating the system in realistic healthcare environments.
-
-The project report particularly identifies South African multilingual data and real-world patient data as important areas for future development.
+* Higher PHQ-9 scores may indicate the need for further professional assessment.
+* Journal-risk indicators can be used to trigger additional attention and referral guidance.
+* Moderate-risk indicators can encourage early support and monitoring.
+* Structured screening results can support conversations between users and healthcare professionals.
+* The dashboard can provide a consistent first-level screening workflow.
+* Screening results should support **referral and professional assessment rather than diagnosis**.
 
 ---
 
-## 🛠️ Technologies Used
+# ⚠️ Limitations
+
+SafeSpace is an academic prototype and has several limitations.
+
+### 1. Not a diagnostic system
+
+The application does not diagnose mental-health conditions.
+
+### 2. Synthetic patient information
+
+Patient information displayed in the application is simulated and does not represent real patients.
+
+### 3. Evaluation limitations
+
+The reported 100% evaluation performance is based on the evaluation data and methodology used during the project.
+
+It should not be interpreted as evidence that the system will achieve 100% accuracy with real-world patients.
+
+### 4. Keyword-based journal analysis
+
+The current prototype uses transparent keyword-based journal alerts. Human language can be complex, so keywords alone cannot capture every possible meaning or context.
+
+### 5. No clinical deployment
+
+The application is an academic prototype and has not been presented as a replacement for professional healthcare assessment.
+
+### 6. Dataset limitations
+
+The original large `Suicide_Detection` dataset could not be uploaded to GitHub because of its file size.
+
+---
+
+# 🚀 Future Improvements
+
+Future versions of SafeSpace could investigate:
+
+* Larger and more diverse datasets
+* Independent external validation
+* More advanced NLP models
+* Multilingual South African language support
+* Improved contextual text analysis
+* More extensive model comparison
+* Integration with healthcare information systems
+* Clinical validation with appropriate ethical approval
+* Improved referral workflows
+* Continuous monitoring and model evaluation
+
+---
+
+# 🛠️ Technologies Used
+
+### Programming & Development
 
 * **R**
 * **RStudio**
-* **Shiny**
-* **Random Forest**
-* **Naive Bayes**
-* **TF-IDF**
-* **Natural Language Processing (NLP)**
-* **tidyverse**
-* **caret**
-* **randomForest**
-* **e1071**
-* **tm**
-* **SnowballC**
-* **ggplot2**
+* **R Shiny**
 
-The project report identifies these R tools and packages as part of the development environment.
+### Data Science
+
+* Data cleaning
+* Exploratory data analysis
+* Feature engineering
+* Classification
+* Model evaluation
+
+### Machine Learning
+
+* Random Forest
+* Naive Bayes
+
+### NLP
+
+* Text cleaning
+* Tokenisation
+* TF-IDF investigation
+* Keyword-based text analysis
+
+### Visualisation
+
+* `ggplot2`
+* R Shiny interface components
+
+### Other R Packages
+
+The project uses packages appropriate to the implementation, including packages from the R data-science and Shiny ecosystem.
 
 ---
 
-## 🎓 Academic Project
-
-**Project:** SafeSpace: AI-Based Mental Health Screening System for South African Public Healthcare
+# 🎓 Academic Project
 
 **Student:** Busisiwe Motlhale
 **Student Number:** 202226162
 **Programme:** BSc Data Science
 **Institution:** Sol Plaatje University
-**Supervisor/Lecturer:** Mrs Modiba
+**Supervisor / Lecturer:** Mrs Modiba
 **Year:** 2026
 
 ---
 
-## 📌 Disclaimer
+# 🔐 Ethics and Privacy
 
-SafeSpace is an academic prototype developed for a BSc Data Science capstone project.
+SafeSpace was developed as an academic prototype.
 
-It is intended to demonstrate the application of data science, machine learning, NLP and R Shiny to mental-health screening and referral support.
+The application is designed to demonstrate the use of data science for mental-health screening and referral support.
 
-**SafeSpace is not a medical diagnostic tool, is not clinically validated, and should not be used to make independent healthcare decisions. Any real-world implementation would require appropriate clinical validation, ethical approval, privacy safeguards, professional oversight and relevant healthcare-sector approval.**
+No real patient information should be entered into the public GitHub repository or demonstration application.
+
+Sensitive healthcare information should always be handled according to applicable ethical, privacy and data-protection requirements.
 
 ---
 
-## 👩🏽‍💻 Repository
+# ⚠️ Disclaimer
 
-**GitHub:** https://github.com/motlhalebeauty410-ux/SafeSpace
+SafeSpace is an **academic screening and referral-support prototype**.
 
+It is not intended to:
+
+* Diagnose mental-health conditions
+* Replace healthcare professionals
+* Provide emergency medical treatment
+* Make final clinical decisions
+
+Any real-world implementation would require appropriate **clinical validation, ethical approval, privacy safeguards, professional oversight, and independent testing**.
+
+---
+
+# 🌟 Project Summary
+
+SafeSpace demonstrates how **data science, R Shiny, PHQ-9 screening, NLP, machine-learning investigation and transparent risk analysis** can be combined into an interactive mental-health screening prototype.
+
+The project originally targeted **at least 80% accuracy** and achieved **100% accuracy, precision, recall and F1-score on the reported evaluation data**.
+
+The result demonstrates successful prototype performance within the project's evaluation setup while recognising that further validation would be required before applying such a system to real-world healthcare.
+
+---
+
+# 🔗 Repository
+
+**SafeSpace GitHub Repository:**
+
+https://github.com/motlhalebeauty410-ux/SafeSpace
+
+---
+
+## Built with R & R Shiny 💗
+
+**SafeSpace — Supporting early awareness, screening and referral through data science.**
